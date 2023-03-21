@@ -1,4 +1,4 @@
-from flask import Flask, render_template, url_for
+from flask import Flask, render_template, url_for, flash, redirect
 from forms import RegistrationForm, LoginForm
 
 
@@ -23,13 +23,19 @@ tasks = [
 
 @app.route("/")
 @app.route("/home")
-def hello_world():
+def home():
     return render_template('home.html', tasks=tasks)
 
-@app.route("/register")
+@app.route("/register", methods=['GET','POST'])
 def register():
     form = RegistrationForm()
-    return render_template('register.html', title='Sign up for your Dopeticks Account!', form=form)
+
+    if form.validate_on_submit():
+        flash(f'Account created for {form.userFirstName.data}!', 'success')
+        return redirect(url_for('home'))
+        
+    errors = [{'field': key, 'messages': form.errors[key]} for key in form.errors.keys()] if form.errors else []
+    return render_template('register.html', title='Sign up for your Dopeticks Account!', form=form, errors=errors)
 
 @app.route("/login")
 def login():
