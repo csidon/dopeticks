@@ -1,0 +1,9 @@
+{% extends "layout.html" %}
+{% block content %}
+	{% for task in tasks %}
+		<h1>{{ task.taskTitle }}</h1>
+		<p> {{ task.taskDescription}} due on {{ task.taskDue }}</p>
+		<p> {{ task.taskStatus }}
+
+	{% endfor %}
+{% endblock content %}
