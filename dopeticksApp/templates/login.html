@@ -1,0 +1,54 @@
+{% extends "layout.html" %}
+{% block content %}
+	<div class="content-section">
+		<form method="POST" action="">
+			<!-- # Hidden tag method adds a CSRF token -->
+			{{ form.hidden_tag() }}		
+			<fieldset class="form-group">
+				<legend class="border-bottom mb-4"> Log into your Dopeticks account</legend>
+
+				<div class="form-group">
+					{{ form.userEmail.label(class="form-control-label") }} 
+					{% if form.userEmail.errors %}
+						{{ form.userEmail(class="form-control form-control-lg is-invalid")}}
+						<div class="invalid-feedback">
+							{% for error in form.userEmail.errors %}
+								<span> {{ error }} </span>
+							{% endfor %}
+						</div>
+					{% else %}
+						{{ form.userEmail(class="form-control form-control-lg") }}
+					{% endif %}	
+				</div>
+				<div class="form-group">
+					{{ form.userPassword.label(class="form-control-label") }} 
+					{% if form.userPassword.errors %}
+						{{ form.userPassword(class="form-control form-control-lg is-invalid")}}
+						<div class="invalid-feedback">
+							{% for error in form.userPassword.errors %}
+								<span> {{ error }} </span>
+							{% endfor %}
+						</div>
+					{% else %}
+						{{ form.userPassword(class="form-control form-control-lg") }}
+					{% endif %}	
+				</div>
+				<div class='form-check'>
+					{{ form.userRemember(class="form-check-input") }}
+					{{ form.userRemember.label(class="form-check-label") }}
+				</div>
+			</fieldset>
+			<div class="form-group">
+					{{ form.submit(class="btn btn-outline-info") }}
+			</div>
+			<small class="text-muted ml-2">
+				<a href="#">Forgot your password?</a>
+			</small>
+		</form>
+	</div>
+	<div class="border-top pt-3">
+		<small class="text-muted">
+			Need have an account? <a class="ml-2" href="{{ url_for('login') }}">Sign up here</a>
+		</small>
+	</div>
+{% endblock content %}
