@@ -23,6 +23,7 @@
 							{% for error in form.userEmail.errors %}
 								<span> {{ error }} </span>
 							{% endfor %}
+						</div>
 					{% else %}
 						{{ form.userEmail(class="form-control form-control-lg") }}
 					{% endif %}	
@@ -37,6 +38,7 @@
 							{% for error in form.userPassword.errors %}
 								<span> {{ error }} </span>
 							{% endfor %}
+						</div>
 					{% else %}
 						{{ form.userPassword(class="form-control form-control-lg") }}
 					{% endif %}	
@@ -49,6 +51,7 @@
 							{% for error in form.confirmPassword.errors %}
 								<span> {{ error }} </span>
 							{% endfor %}
+						</div>
 					{% else %}
 						{{ form.confirmPassword(class="form-control form-control-lg") }}
 					{% endif %}	
