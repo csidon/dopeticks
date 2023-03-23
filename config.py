@@ -1,1 +1,0 @@
-# Stores configurations for our application

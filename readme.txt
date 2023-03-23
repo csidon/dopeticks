@@ -9,6 +9,35 @@
 # Test to see if it works
 >> flask run
 
+# To run app, in (venv)
+python dopeticks.py
 
+flask shell
+from dopeticks import app
+from dopeticks import db
+
+
+
+####################################
+# Tips & Tricks
+#----------------------------------
 # To get out of venv
 >> venv\Scripts\deactivate
+
+## To add a user, after <<flask shell>> and <<create_all()>>, create a user using e.g. 
+user_1 = User(userEmail='new@test.com', userPassword="password!")
+db.session.add(user_1)
+db.session.commit() 		## commits it to the DB
+
+
+## Query users using:
+User.query.all()
+user = User.query.filter_by(userEmail="new@test.com".first()
+user.id
+
+## Adding a task (tied to user defined above)
+task_1 = Task(taskTitle="Connect to DB", taskDescription="help!!!", userID=user.id, taskDue="02/03/23")
+db.session.add(task_1)
+db.session.commit()
+
+
