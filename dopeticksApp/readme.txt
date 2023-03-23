@@ -1,6 +1,9 @@
 >> cd /dopeticks
 >> venv\Scripts\activate
 
+# Install the requirements
+pip install -r requirements.txt 
+
 >> cd /app
 
 # One time setup to allow for easy running of Flask app
@@ -14,7 +17,7 @@ python dopeticks.py
 
 flask shell
 from dopeticks import app
-from dopeticks import db
+
 
 
 
@@ -39,5 +42,8 @@ user.id
 task_1 = Task(taskTitle="Connect to DB", taskDescription="help!!!", userID=user.id, taskDue="02/03/23")
 db.session.add(task_1)
 db.session.commit()
+
+## To clear db of all entries, use
+db.drop_all()
 
 
