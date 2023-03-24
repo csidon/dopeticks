@@ -28,13 +28,14 @@
 		      <div class="collapse navbar-collapse" id="navbarToggle">
 		        <div class="navbar-nav mr-auto">
 		          <a class="nav-item nav-link" href="{{ url_for('home') }}">Home</a>
-		          <a class="nav-item nav-link" href="{{ url_for('profile') }}">Profile</a>
+		          
 		        </div>
 		        <!-- Navbar Right Side -->
 		        <div class="navbar-nav">
 		        	<!-- # Using ginja2 conditional and using current_user.is_authenticated to check if user is logged in or not -->
 		        	{% if current_user.is_authenticated %}
-		        		<a class="nav-item nav-link" href="{{ url_for('dashboard') }}">{{ current_user.userFirstName }} {{ current_user.userLastName }}</a>
+		        		<a class="nav-item nav-link" href="{{ url_for('dashboard') }}">Dashboard</a>
+		        		<a class="nav-item nav-link" href="{{ url_for('account') }}">{{ current_user.userFirstName }} {{ current_user.userLastName }}</a>
 		        		<a class="nav-item nav-link" href="{{ url_for('logout') }}">Logout</a>
 		        	{% else %}
 			          <a class="nav-item nav-link" href="{{ url_for('login') }}">Login</a>

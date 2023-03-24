@@ -1,4 +1,4 @@
-from datetime import datetime
+from datetime import datetime       # Manages datetime issues
 from dopeticks import db, loginManager
 from flask_login import UserMixin
 

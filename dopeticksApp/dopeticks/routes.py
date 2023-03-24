@@ -1,6 +1,9 @@
+import os
+import secrets              # Package that generates a random hex value
+from PIL import Image       # Pillow package that helps to resize image
 from flask import render_template, url_for, flash, redirect, request
 from dopeticks import app, db, bcrypt
-from dopeticks.forms import RegistrationForm, LoginForm
+from dopeticks.forms import RegistrationForm, LoginForm, UpdateAccountForm
 from dopeticks.models import User, Task
 from flask_login import login_user, current_user, logout_user, login_required
 
@@ -31,9 +34,9 @@ def register():
 
     if form.validate_on_submit():
         # Using Bcrypt to hash the password so that we don't store passwords in plain text
-        hashed_pw = bcrypt.generate_password_hash(form.userPassword.data).decode('utf-8')
+        hashedPW = bcrypt.generate_password_hash(form.userPassword.data).decode('utf-8')
         # Create an object user with the data collected from the form, passing in the hashed password (instead of cleartext) 
-        user = User(userEmail=form.userEmail.data, userLastName=form.userLastName.data, userFirstName=form.userFirstName.data, userPassword=hashed_pw)
+        user = User(userEmail=form.userEmail.data, userLastName=form.userLastName.data, userFirstName=form.userFirstName.data, userPassword=hashedPW)
         db.session.add(user)        # Adds user to db
         db.session.commit()         # Commits user to db
         flash('Your account has been created. Please log into your account', 'success')
@@ -69,9 +72,51 @@ def logout():
     return redirect(url_for('home')) 
 
 
-@app.route("/profile")
-def profile():
-    return render_template('profile.html', title='Profile')
+# This function saves/updates images in our database
+def saveImage(formUploadedImage):
+    # Renaming the image to a unique/random 8 byte hex so that there won't be any conflicting file names in the database
+    randomHexImage = secrets.token_hex(8)
+    # Splitting the file name from file extension so I can grab the extension and append it to my new hex value
+    # I'm not using the file name variable, so I'm using '_' as a throwaway variable name
+    _, fileExtension = os.path.splitext(formUploadedImage.filename)
+    randomHexImage = randomHexImage + fileExtension
+    # Concats the os path to the image
+    imagePath = os.path.join(app.root_path, 'static/profilePics', randomHexImage)
+    # Resizing image so that it's no more than 125px -- This allows us to save space and run more efficiently
+    outputSize = (125, 125)
+    imageThumb = Image.open(formUploadedImage)
+    imageThumb.thumbnail(outputSize)
+    # Saving the thumbnail image to the image path
+    imageThumb.save(imagePath)
+    # Returning the image for updating in the database
+    return randomHexImage
+
+
+
+@app.route("/account", methods=['GET','POST'])
+@login_required
+def account():
+    form = UpdateAccountForm()
+    if form.validate_on_submit():
+        if form.uploadImage.data:
+            # Saving the picture and updating the database with the hex-ed filename
+            hexedImage = saveImage(form.uploadImage.data)
+            current_user.userImage = hexedImage
+
+        current_user.userFirstName = form.userFirstName.data
+        current_user.userLastName = form.userLastName.data
+        current_user.userEmail = form.userEmail.data
+
+        db.session.commit()
+        flash('Your account has been updated', 'success')
+        return redirect(url_for('account'))
+    elif request.method == 'GET':
+        form.userFirstName.data = current_user.userFirstName
+        form.userLastName.data = current_user.userLastName
+        form.userEmail.data = current_user.userEmail
+
+    userImage = url_for('static', filename='profilePics/' + current_user.userImage)
+    return render_template('account.html', title='Your Dopeticks User Account', userImage=userImage, form=form)
 
 
 @app.route("/dashboard")
