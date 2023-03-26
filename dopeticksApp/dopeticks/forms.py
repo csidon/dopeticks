@@ -1,4 +1,6 @@
-from flask_wtf import FlaskForm
+from flask_wtf import FlaskForm				# Provides form validation functionality
+from flask_wtf.file import FileField, FileAllowed	# Provides ability for the form to manage files/images
+from flask_login import current_user				
 from wtforms import StringField, PasswordField, SubmitField, BooleanField
 from wtforms.validators import DataRequired, Length, Email, email_validator, EqualTo, ValidationError
 from dopeticks.models import User
@@ -32,3 +34,18 @@ class LoginForm(FlaskForm):
 	userRemember = BooleanField('Remember Me')
 
 	submit = SubmitField('Login')
+
+class UpdateAccountForm(FlaskForm):
+	userFirstName = StringField('First Name', validators=[DataRequired()])
+	userLastName = StringField('Last Name', validators=[DataRequired()])
+	userEmail = StringField('Email (This will also be your username)', validators=[DataRequired(), Email()])
+	uploadImage = FileField('Update your profile picture', validators=[FileAllowed(['jpg', 'png'])])
+
+	submit = SubmitField('Update')
+
+	def validate_userEmail(self, userEmail):
+		if userEmail.data != current_user.userEmail:
+			user = User.query.filter_by(userEmail=userEmail.data).first()
+			# If the user query is none, nothing happens. Otherwise if the query returns data, throw validation error message
+			if user:
+				raise ValidationError("That email already exists. Please register with another email address")

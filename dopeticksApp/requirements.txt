@@ -24,6 +24,7 @@ jmespath==1.0.1
 MarkupSafe==2.1.1
 mysql-connector-python==8.0.32
 pathspec==0.10.1
+Pillow==9.4.0
 platformdirs==2.6.0
 psycopg2==2.9.5
 pymongo==4.3.3
@@ -36,8 +37,10 @@ requests==2.26.0
 semantic-version==2.8.5
 six==1.14.0
 SQLAlchemy==2.0.7
+sqlparse==0.4.2
 termcolor==1.1.0
 typing_extensions==4.5.0
+tzdata==2022.1
 urllib3==1.26.15
 virtualenv==20.17.1
 wcwidth==0.1.9

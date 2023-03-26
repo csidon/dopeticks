@@ -1,7 +1,7 @@
 from flask import Flask
-from flask_sqlalchemy import SQLAlchemy
-from flask_bcrypt import Bcrypt
-from flask_login import LoginManager
+from flask_sqlalchemy import SQLAlchemy	# Manages database sync
+from flask_bcrypt import Bcrypt			# Hashes passwords so that they are secure
+from flask_login import LoginManager	# Manages logins/cookies
 
 
 
