@@ -13,6 +13,22 @@ body.page-background {
   width: 70%;
 }
 
+.divider:after,
+.divider:before {
+content: "";
+flex: 1;
+height: 1px;
+background: #eee;
+}
+.h-custom {
+height: calc(100% - 300px);
+}
+/*@media (max-width: 30rem) {
+.h-custom {
+height: 100%;
+}
+}*/
+
 h1, h2, h3, h4, h5, h6 {
   color: #444444;
 }
@@ -91,7 +107,16 @@ a.article-title:hover {
 #right-side {
     width: 70%;
 }
-.login-pic{
-  border-radius: 60px;
-  padding: 2px;
+
+/*Login Page customization*/
+.login-btn{
+    width:100%;
 }
+
+.login-pic{
+    opacity: 100%;
+    z-index: -1;
+    margin-left:20%;
+}
+
+

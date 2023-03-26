@@ -24,7 +24,7 @@ class RegistrationForm(FlaskForm):
 
 
 class LoginForm(FlaskForm):
-	userEmail = StringField('Email', validators=[DataRequired(), Email()])
+	userEmail = StringField('Email address', validators=[DataRequired(), Email()])
 	userPassword = PasswordField('Password', validators=[DataRequired()])
 
 	# Remembers user's information so that they do not need to re-login if they close their browser
