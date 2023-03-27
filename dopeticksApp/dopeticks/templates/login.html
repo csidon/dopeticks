@@ -1,12 +1,12 @@
 {% extends "layout.html" %}
 {% block content %}
-	<section class="vh-40" style="background-color: #C0DFE4; border-radius: 2rem;">
+	<section class="vh-40">
 <!--		Container settings-->
 		<div class="container-fluid py-5 h-100">
-			<div class="row d-flex justify-content-center align-items-center h-100 g-0">
+			<div class="row d-flex justify-content-center align-items-center h-100 g-0" style="background-color: #C0DFE4; border-radius: 2rem;">
 				<div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
 					<!--form-->
-					<form style="width: 23rem; z-index:1;" method="POST" action="">
+					<form  method="POST" action="">
 						<!-- # Hidden tag method adds a CSRF token -->
 						{{ form.hidden_tag() }}
 
