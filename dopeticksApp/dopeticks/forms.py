@@ -1,7 +1,8 @@
+from datetime import datetime       # Manages datetime issues, also imported in models.py
 from flask_wtf import FlaskForm				# Provides form validation functionality
 from flask_wtf.file import FileField, FileAllowed	# Provides ability for the form to manage files/images
 from flask_login import current_user				
-from wtforms import StringField, PasswordField, SubmitField, BooleanField
+from wtforms import StringField, PasswordField, SubmitField, BooleanField, TextAreaField, SelectField, RadioField, DateField
 from wtforms.validators import DataRequired, Length, Email, email_validator, EqualTo, ValidationError
 from dopeticks.models import User
 
@@ -49,3 +50,38 @@ class UpdateAccountForm(FlaskForm):
 			# If the user query is none, nothing happens. Otherwise if the query returns data, throw validation error message
 			if user:
 				raise ValidationError("That email already exists. Please register with another email address")
+
+
+# class TaskForm(FlaskForm):
+# 	taskTitle = StringField('Title', validators=[DataRequired()])
+# 	taskDescription = TextAreaField('Description', validators=[DataRequired()])
+
+# 	# Will do this later
+# 	taskStatus = SelectField('Task Status', validators=[DataRequired()], choices=[ ("To do", "todo"), ("Doing", "doing"), ("Done!", "done")] )
+# 	# taskPriority = RadioField('Priority', validators=[DataRequired()], choices=["Normal", "High", "Urgent"], coerce=unicode )
+# 	# Note to team: Let's do a task icon selection later once we get this working. We'll start with a default icon form now. 
+# 	# taskIcon = FileField('Update your profile picture', validators=[FileAllowed(['jpg', 'png'])])
+# 	# Due dates aren't a compulsory field
+# 	# taskDue = DateField('Due Date', format='%d-%m-%Y')
+
+# 	submit = SubmitField('Create New Task')
+
+class TaskForm(FlaskForm):
+	taskTitle = StringField('Title', validators=[DataRequired()])
+	taskDescription = TextAreaField('Description', validators=[DataRequired()])
+	taskDue = DateField('Task Due', format="%Y-%m-%d")
+	taskStatus = SelectField('Task Status', validators=[DataRequired()], choices=[ "To do", "Doing", "Done!"] )
+	# taskStatus = SelectField('Task Status', validators=[DataRequired()], choices=[ ("To do", "todo"), ("Doing", "doing"), ("Done!", "done")] )
+
+	submit = SubmitField('Create New Task')
+
+
+
+
+	#     id = db.Column(db.Integer, primary_key = True)
+    # taskTitle = db.Column(db.String(180), nullable=False)
+    # taskDescription = db.Column(db.Text, nullable=False)
+    # taskStatus = db.Column(db.String, nullable=True, default='todo')
+    # taskPriority = db.Column(db.String, nullable=True, default='normal')
+    # taskDue = db.Column(db.DateTime, nullable=True, default=datetime.utcnow)
+    # userID = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
