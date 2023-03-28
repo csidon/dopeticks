@@ -3,27 +3,28 @@ import secrets              # Package that generates a random hex value
 from PIL import Image       # Pillow package that helps to resize image
 from flask import render_template, url_for, flash, redirect, request
 from dopeticks import app, db, bcrypt
-from dopeticks.forms import RegistrationForm, LoginForm, UpdateAccountForm
+from dopeticks.forms import RegistrationForm, LoginForm, UpdateAccountForm, TaskForm
 from dopeticks.models import User, Task
 from flask_login import login_user, current_user, logout_user, login_required
 
 
 
-tasks = [
-    {
-        'taskTitle' : 'Set up dopeticks structure',
-        'taskDescription' : 'Need to do this yo',
-        'taskStatus' : 'Ongoing',
-        'taskPriority' : 'Urgent',
-        'taskDue' : '21 Mar 2023'
-    }
+# tasks = [
+#     {
+#         'taskTitle' : 'Set up dopeticks structure',
+#         'taskDescription' : 'Need to do this yo',
+#         'taskStatus' : 'Ongoing',
+#         'taskPriority' : 'Urgent',
+#         'taskDue' : '21 Mar 2023'
+#     }
 
-]
+# ]
 
 
 @app.route("/")
 @app.route("/home")
 def home():
+    tasks = Task.query.all()
     return render_template('home.html', tasks=tasks)
 
 @app.route("/register", methods=['GET','POST'])
@@ -123,3 +124,30 @@ def account():
 @login_required             # Needed for routes that can only be accessed after login
 def dashboard():
     return render_template('dashboard.html', title='Your Dopeticks Stats At A Glance')
+
+
+
+# @app.route("/task/new", methods=['GET','POST'])
+# @login_required             # Needed for routes that can only be accessed after login
+# def newTask():
+#     form = TaskForm()
+#     if form.validate_on_submit():
+#         flash('You have created a new task!', 'success')
+#         return redirect(url_for('home'))
+
+#     return render_template('createTask.html', title='New Task', form=form)
+
+
+@app.route("/task/new", methods=['GET','POST'])
+@login_required             # Needed for routes that can only be accessed after login
+def newTask():
+    form = TaskForm()
+    if form.validate_on_submit():
+        task = Task(taskTitle=form.taskTitle.data, taskDescription=form.taskDescription.data, userID=current_user.id, owner=current_user, 
+            taskDue=form.taskDue.data, taskStatus=form.taskStatus.data )
+        db.session.add(task)
+        db.session.commit()
+        flash('New Task Created!', 'success')
+        return redirect(url_for('dashboard'))
+
+    return render_template('createTask.html', title='New Task', form=form)

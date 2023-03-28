@@ -14,7 +14,7 @@ class User(db.Model, UserMixin):
     # A hash will be generated for userImage to be 20 Char, and userPass as 60 Char
     userImage = db.Column(db.String(20), nullable=False, default='default.jpg')
     userPassword = db.Column(db.String(60), nullable=False)
-    tasks = db.relationship('Task', backref='author', lazy=True)
+    tasks = db.relationship('Task', backref='owner', lazy=True)
 
     def __repr__(self):
         return f"User('{self.userEmail}', '{self.userPassword}', '{self.userImage}')"
@@ -24,10 +24,13 @@ class Task(db.Model):
     id = db.Column(db.Integer, primary_key = True)
     taskTitle = db.Column(db.String(180), nullable=False)
     taskDescription = db.Column(db.Text, nullable=False)
-    taskStatus = db.Column(db.Integer, nullable=False, default='0')
-    taskPriority = db.Column(db.Integer, nullable=False, default='3')
-    taskDue = db.Column(db.DateTime, nullable=False)
+    taskStatus = db.Column(db.String, nullable=True, default='todo')
+    taskPriority = db.Column(db.String, nullable=True, default='normal')
+    taskDue = db.Column(db.DateTime, nullable=True, default=datetime.utcnow)
     userID = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
 
     def __repr__(self):
-        return f"Task('{self.taskTitle}', '{self.taskStatus}', '{self.taskPriority}', '{self.taskDue}')"
+        # return f"Task('{self.taskTitle}', '{self.taskStatus}', '{self.taskPriority}', '{self.taskDue}')"
+        return f"Task('{self.taskTitle}', '{self.taskDescription}')"
+
+

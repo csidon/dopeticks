@@ -2,8 +2,11 @@
 {% block content %}
 	{% for task in tasks %}
 		<h1>{{ task.taskTitle }}</h1>
-		<p> {{ task.taskDescription}} due on {{ task.taskDue }}</p>
-		<p> {{ task.taskStatus }}
+		<img class="rounded-circle article-img" src="{{ url_for('static', filename='profilePics/' + task.owner.userImage) }}">
+		<p> created by {{ task.owner.userFirstName}} {{ task.owner.userLastName}}</p>
+		<p> {{ task.taskDescription}}</p>
+		<p>  due on {{ task.taskDue.strftime('%d-%m-%Y') }}</p>
+		<!-- <p> {{ task.taskStatus }} -->
 
 	{% endfor %}
 {% endblock content %}

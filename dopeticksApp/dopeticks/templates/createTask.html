@@ -1,0 +1,81 @@
+{% extends "layout.html" %}
+{% block content %}
+<div class="content-section">
+	<form  method="POST" action="">
+		<!-- # Hidden tag method adds a CSRF token -->
+		{{ form.hidden_tag() }}
+		<fieldset class="form-group">
+			<legend class="border-bottom text-center mb-5" style = "font-weight: bold; font-size: 32px; color: #5E5E5E;"> New Task</legend>
+
+			<div class="form-outline mb-2">
+				{{ form.taskTitle.label(class="form-control-label") }}
+				{% if form.taskTitle.errors %}
+					{{ form.taskTitle(class="form-control form-control-lg is-invalid")}}
+					<div class="invalid-feedback">
+						{% for error in form.taskTitle.errors %}
+							<span> {{ error }} </span>
+						{% endfor %}
+					</div>
+				{% else %}
+					{{ form.taskTitle(class="form-control form-control-lg") }}
+				{% endif %}
+			</div>
+			<div class="form-outline mb-1">
+				{{ form.taskDescription.label(class="form-control-label") }}
+				{% if form.taskDescription.errors %}
+					{{ form.taskDescription(class="form-control form-control-lg is-invalid")}}
+					<div class="invalid-feedback">
+						{% for error in form.taskDescription.errors %}
+							<span> {{ error }} </span>
+						{% endfor %}
+					</div>
+				{% else %}
+					{{ form.taskDescription(class="form-control form-control-lg") }}
+				{% endif %}
+			</div>
+			<div class="form-outline mb-1">
+				{{ form.taskDue.label(class="datepicker") }}
+				{% if form.taskDue.errors %}
+					{{ form.taskDue(class="form-control form-control-lg is-invalid")}}
+					<div class="invalid-feedback">
+						{% for error in form.taskDue.errors %}
+							<span> {{ error }} </span>
+						{% endfor %}
+					</div>
+				{% else %}
+					{{ form.taskDue(class="form-control form-control-lg") }}
+				{% endif %}
+			</div>
+			<div class="dropdown">
+				<button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+				    Set Task Status
+				</button>
+				<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+					{% for choices in form.taskStatus %}
+
+						<a class="dropdown-item" href="#"> {{ choices }} </a>
+					{% endfor %}
+
+					{% if form.taskStatus.errors %}
+						{{ form.taskStatus(class="form-control form-control-lg is-invalid")}}
+						<div class="invalid-feedback">
+							{% for error in form.taskStatus.errors %}
+								<span> {{ error }} </span>
+							{% endfor %}
+						</div>
+					{% else %}
+						{{ form.taskStatus(class="form-control form-control-lg") }}
+					{% endif %}
+				</div>
+			</div>
+
+	    </fieldset>
+		<div class="text-center text-lg-start mt-4 pt-2">
+			{{ form.submit(class="btn btn-outline-secondary btn-lg btn-block") }}
+		</div>
+	</form>
+</div>
+
+
+
+{% endblock content %}
