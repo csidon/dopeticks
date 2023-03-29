@@ -23,7 +23,7 @@
 	<body>
 		<!-- Navbar and Making it responsive  -->
 		<header class="site-header">
-		  <nav class="navbar navbar-expand-md navbar-dark bg-steel fixed-top">
+		  <nav class="navbar navbar-expand-md navbar-dark back-color-nav fixed-top py-3">
 		    <div class="container">
 		      <a class="navbar-brand mr-4" href="/">Dopeticks</a>
 		      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggle" aria-controls="navbarToggle" aria-expanded="false" aria-label="Toggle navigation">
@@ -31,19 +31,19 @@
 		      </button>
 		      <div class="collapse navbar-collapse" id="navbarToggle">
 		        <div class="navbar-nav mr-auto">
-		          <a class="nav-item nav-link" href="{{ url_for('home') }}">Home</a>
+		          <a class="nav-item nav-link" style="color:#424242;" href="{{ url_for('home') }}">Home</a>
 		          
 		        </div>
 		        <!-- Navbar Right Side -->
 		        <div class="navbar-nav">
 		        	<!-- # Using ginja2 conditional and using current_user.is_authenticated to check if user is logged in or not -->
 		        	{% if current_user.is_authenticated %}
-		        		<a class="nav-item nav-link" href="{{ url_for('dashboard') }}">Dashboard</a>
-		        		<a class="nav-item nav-link" href="{{ url_for('account') }}">{{ current_user.userFirstName }} {{ current_user.userLastName }}</a>
-		        		<a class="nav-item nav-link" href="{{ url_for('logout') }}">Logout</a>
+		        		<a class="nav-item nav-link"  style="color:#424242;" href="{{ url_for('dashboard') }}">Dashboard</a>
+		        		<a class="nav-item nav-link"  style="color:#424242;" href="{{ url_for('account') }}">{{ current_user.userFirstName }} {{ current_user.userLastName }}</a>
+		        		<a class="nav-item nav-link"  style="color:#424242;" href="{{ url_for('logout') }}">Logout</a>
 		        	{% else %}
-			          <a class="nav-item nav-link" href="{{ url_for('login') }}">Login</a>
-			          <a class="nav-item nav-link" href="{{ url_for('register') }}">Register</a>
+			          <a class="nav-item nav-link"  style="color:#424242;" href="{{ url_for('login') }}">Login</a>
+			          <a class="nav-item nav-link"  style="color:#424242;" href="{{ url_for('register') }}">Register</a>
 		          {% endif %}
 		        </div>
 		      </div>
@@ -54,7 +54,7 @@
 		
 		<main role="main" class="container">
 		  <div class="row">
-		    <div class="col-md-8">
+		    <div class="col-md-10">
 		    	{% with messages = get_flashed_messages(with_categories=true) %}
 		    		{% if messages %}
 		    			{% for category, message in messages %}
