@@ -1,11 +1,15 @@
 {% extends "layout.html" %}
 {% block content %}
+
+
+<!-- Since the code for update and creating a task is very similar, I'm going to use this template and purpose it for both update/create tasks -->
+
 <div class="content-section">
 	<form  method="POST" action="">
 		<!-- # Hidden tag method adds a CSRF token -->
 		{{ form.hidden_tag() }}
 		<fieldset class="form-group">
-			<legend class="border-bottom text-center mb-5" style = "font-weight: bold; font-size: 32px; color: #5E5E5E;"> New Task</legend>
+			<legend class="border-bottom text-center mb-5" style = "font-weight: bold; font-size: 32px; color: #5E5E5E;">{{ legend }}</legend>
 
 			<div class="form-outline mb-2">
 				{{ form.taskTitle.label(class="form-control-label") }}
@@ -47,15 +51,10 @@
 				{% endif %}
 			</div>
 			<div class="dropdown">
-				<button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+				<a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuButton" data-toggle="dropdown" aria-expanded="false">
 				    Set Task Status
-				</button>
-				<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-					{% for choices in form.taskStatus %}
-
-						<a class="dropdown-item" href="#"> {{ choices }} </a>
-					{% endfor %}
-
+				</a>
+				<ul class="dropdown-menu">
 					{% if form.taskStatus.errors %}
 						{{ form.taskStatus(class="form-control form-control-lg is-invalid")}}
 						<div class="invalid-feedback">
@@ -64,9 +63,12 @@
 							{% endfor %}
 						</div>
 					{% else %}
-						{{ form.taskStatus(class="form-control form-control-lg") }}
+						{% for choices in form.taskStatus.choices %}
+							<li><a class="dropdown-item" href="#"> {{ choices }} </a></li>
+						{% endfor %}
+
 					{% endif %}
-				</div>
+				</ul>
 			</div>
 
 	    </fieldset>

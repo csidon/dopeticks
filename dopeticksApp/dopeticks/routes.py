@@ -1,7 +1,7 @@
 import os
 import secrets              # Package that generates a random hex value
 from PIL import Image       # Pillow package that helps to resize image
-from flask import render_template, url_for, flash, redirect, request
+from flask import render_template, url_for, flash, redirect, request, abort
 from dopeticks import app, db, bcrypt
 from dopeticks.forms import RegistrationForm, LoginForm, UpdateAccountForm, TaskForm
 from dopeticks.models import User, Task
@@ -150,4 +150,44 @@ def newTask():
         flash('New Task Created!', 'success')
         return redirect(url_for('dashboard'))
 
-    return render_template('createTask.html', title='New Task', form=form)
+    return render_template('createTask.html', title='New Task', form=form, legend="New Task")
+
+
+@app.route("/task/<int:taskID>/update", methods=['GET','POST'])
+@login_required 
+def task(taskID):
+    task = Task.query.get_or_404(taskID)
+    if task.owner != current_user:
+        abort(403)
+    form = TaskForm()
+    if form.validate_on_submit():
+        if form.taskStatus.data=="Done":
+            # Maybe done is a separate button altogether..?
+            task.taskTitle = form.taskTitle.data
+            task.taskDescription = form.taskDescription.data
+            task.taskDue = form.taskDue.data
+            task.taskStatus = form.taskStatus.data
+            db.session.commit()
+            flash("OMG! You've completed a task!", 'success')
+            # We should do some fancy confetti stuff here
+            # Then move task to archived/done section
+            return redirect(url_for('home'))
+            
+        else:
+            task.taskTitle = form.taskTitle.data
+            task.taskDescription = form.taskDescription.data
+            task.taskDue = form.taskDue.data
+            task.taskStatus = form.taskStatus.data
+            db.session.commit()
+            flash('Your task has been updated', 'success')
+            return redirect(url_for('home'))
+
+
+
+    elif request.method == 'GET':
+        form.taskTitle.data = task.taskTitle
+        form.taskDescription.data = task.taskDescription
+        form.taskDue.data = task.taskDue
+        form.taskStatus.data = task.taskStatus
+
+    return render_template('createTask.html', title='Update Task', form=form, task=task, legend="Update Task")
