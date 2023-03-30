@@ -1,10 +1,6 @@
 /*Example CSS here - @Ana feel free to change this!*/
 
-body {
-  background: #fafafa;
-  color: #333333;
-  margin-top: 5rem;
-}
+
 
 body.page-background {
   background-image: url('static/images/register_back.png');
@@ -125,9 +121,12 @@ a.article-title:hover {
 
 /*home page*/
 body{
+    position: relative;
     background: #F4F7FD;
-    margin-top:20px;
+    color: #333333;
+    margin-top: 5rem;
 }
+
 
 .card-margin {
     margin-bottom: 1.875rem;
