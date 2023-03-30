@@ -44,7 +44,7 @@
 		        </div>
 			</div>
 			<div class="widget-49">
-				<a href={{ url_for('newTask') }} class="btn btn-sm btn-flash-border-primary">Add Task</a>
+				<a href={{ url_for('tasks.newTask') }} class="btn btn-sm btn-flash-border-primary">Add Task</a>
 			</div>
 		</div>
 	</section>
@@ -74,7 +74,7 @@
 										<p> {{ task.taskDescription}}</p>
 									</ol>
 									<div class="widget-49-meeting-action">
-										<a href={{ url_for('task', taskID=task.id) }} class="btn btn-sm btn-flash-border-primary">Edit</a>
+										<a href={{ url_for('tasks.updateTask', taskID=task.id) }} class="btn btn-sm btn-flash-border-primary">Edit</a>
 									</div>
 								</div>
 							</div>
