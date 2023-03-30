@@ -19,6 +19,11 @@ loginManager = LoginManager(app)
 loginManager.login_view = 'login'			# Flask function that brings user back to login page if they haven't logged in
 loginManager.login_message_category = 'info'		# Makes pretty - Assigns Bootstraps' "info" category styling to login-related messages
 
-from dopeticks import routes
+from dopeticks.users.routes import users
+from dopeticks.tasks.routes import tasks
+from dopeticks.main.routes import main
 
 
+app.register_blueprint(users)
+app.register_blueprint(tasks)
+app.register_blueprint(main)

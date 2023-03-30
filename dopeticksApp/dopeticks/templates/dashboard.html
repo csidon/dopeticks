@@ -46,6 +46,7 @@
 		            </div>
 		        </div>
 			</div>
+<<<<<<< HEAD
 <!--			<div class="widget-49">-->
 <!--				<a href={{ url_for('newTask') }} class="btn btn-sm btn-flash-border-primary">Add Task</a>-->
 <!--			</div>-->
@@ -60,6 +61,10 @@
 						</a>
 					</div>
 				</div>
+=======
+			<div class="widget-49">
+				<a href={{ url_for('tasks.newTask') }} class="btn btn-sm btn-flash-border-primary">Add Task</a>
+>>>>>>> 80b0d9df9da34df0d0a35a38d3f20c9a52461e8d
 			</div>
 		</div>
 	</section>
@@ -89,7 +94,11 @@
 										<p> {{ task.taskDescription}}</p>
 									</ol>
 									<div class="widget-49-meeting-action">
+<<<<<<< HEAD
 										<a href= {{ url_for('task', taskID=task.id) }} class="btn btn-sm btn-flash-border-primary">Edit</a>
+=======
+										<a href={{ url_for('tasks.updateTask', taskID=task.id) }} class="btn btn-sm btn-flash-border-primary">Edit</a>
+>>>>>>> 80b0d9df9da34df0d0a35a38d3f20c9a52461e8d
 									</div>
 								</div>
 							</div>
