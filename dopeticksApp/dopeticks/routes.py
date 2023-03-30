@@ -9,6 +9,7 @@ from flask_login import login_user, current_user, logout_user, login_required
 
 
 
+
 # tasks = [
 #     {
 #         'taskTitle' : 'Set up dopeticks structure',
@@ -59,7 +60,7 @@ def login():
             login_user(user, remember=form.userRemember.data)
             # If the user has been trying to access a specific page before logging in, redirect them to that page. Otherwise redirect them to home
             nextPage = request.args.get('next')
-            return redirect(nextPage) if nextPage else redirect(url_for('home'))
+            return redirect(nextPage) if nextPage else redirect(url_for('dashboard'))
         else:
             flash('Login unsuccessful. Please check email and password', 'danger')
     # errors = [{'field': key, 'messages': form.errors[key]} for key in form.errors.keys()] if form.errors else []        
@@ -123,7 +124,9 @@ def account():
 @app.route("/dashboard")
 @login_required             # Needed for routes that can only be accessed after login
 def dashboard():
-    return render_template('dashboard.html', title='Your Dopeticks Stats At A Glance')
+    # tasks = Task.query.all()
+    tasks = Task.query.filter(Task.userID==current_user.id)
+    return render_template('dashboard.html', title='Your Dopeticks Stats At A Glance', tasks=tasks)
 
 
 
@@ -144,7 +147,7 @@ def newTask():
     form = TaskForm()
     if form.validate_on_submit():
         task = Task(taskTitle=form.taskTitle.data, taskDescription=form.taskDescription.data, userID=current_user.id, owner=current_user, 
-            taskDue=form.taskDue.data, taskStatus=form.taskStatus.data )
+            taskDue=form.taskDue.data, taskStatus=form.taskStatus.data)
         db.session.add(task)
         db.session.commit()
         flash('New Task Created!', 'success')
