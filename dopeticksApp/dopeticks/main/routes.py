@@ -20,4 +20,13 @@ def home():
 def dashboard():
     # tasks = Task.query.all()
     tasks = Task.query.filter(Task.userID==current_user.id)
-    return render_template('dashboard.html', title='Your Dopeticks Stats At A Glance', tasks=tasks)
+    todo = Task.query.filter(Task.userID==current_user.id,Task.taskStatus=="todo").count()
+    doing = Task.query.filter(Task.userID==current_user.id,Task.taskStatus=="doing").count()
+    done = Task.query.filter(Task.userID==current_user.id,Task.taskStatus=="done").count()
+    return render_template('dashboard.html', title='Your Dopeticks Stats At A Glance', tasks=tasks, todo=todo, doing=doing, done=done)
+
+
+
+@main.route("/test")
+def test():
+    return 'test'

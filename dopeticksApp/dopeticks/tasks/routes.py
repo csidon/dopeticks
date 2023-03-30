@@ -2,11 +2,12 @@
 #****** To change task to createUpdateTask
 
 
-from flask import render_template, url_for, flash, redirect, request, abort, Blueprint
+from flask import render_template, url_for, flash, redirect, request, abort, Blueprint, jsonify
 from dopeticks import db
 from dopeticks.tasks.forms import TaskForm
 from dopeticks.models import User, Task
 from flask_login import current_user, login_required
+from werkzeug.datastructures import ImmutableMultiDict  # To allow data input to request.form
 
 
 tasks = Blueprint('tasks', __name__)
@@ -15,15 +16,22 @@ tasks = Blueprint('tasks', __name__)
 @login_required             # Needed for routes that can only be accessed after login
 def newTask():
     form = TaskForm()
-    if form.validate_on_submit():
-        task = Task(taskTitle=form.taskTitle.data, taskDescription=form.taskDescription.data, userID=current_user.id, owner=current_user, 
-            taskDue=form.taskDue.data, taskStatus=form.taskStatus.data)
+    if request.method == 'POST':
+        selectedStatus = form.taskStatus.data
+        task = Task(
+            taskTitle=form.taskTitle.data, 
+            taskDescription=form.taskDescription.data, 
+            userID=current_user.id, owner=current_user, 
+            taskDue=form.taskDue.data, 
+            taskStatus=selectedStatus,
+            taskPriority=form.taskPriority.data
+            )
         db.session.add(task)
         db.session.commit()
         flash('New Task Created!', 'success')
         return redirect(url_for('main.dashboard'))
-
     return render_template('createTask.html', title='New Task', form=form, legend="New Task")
+
 
 
 @tasks.route("/task/<int:taskID>/update", methods=['GET','POST'])
@@ -34,26 +42,13 @@ def updateTask(taskID):
         abort(403)
     form = TaskForm()
     if form.validate_on_submit():
-        if form.taskStatus.data=="Done":
-            # Maybe done is a separate button altogether..?
-            task.taskTitle = form.taskTitle.data
-            task.taskDescription = form.taskDescription.data
-            task.taskDue = form.taskDue.data
-            task.taskStatus = form.taskStatus.data
-            db.session.commit()
-            flash("OMG! You've completed a task!", 'success')
-            # We should do some fancy confetti stuff here
-            # Then move task to archived/done section
-            return redirect(url_for('main.dashboard'))
-            
-        else:
-            task.taskTitle = form.taskTitle.data
-            task.taskDescription = form.taskDescription.data
-            task.taskDue = form.taskDue.data
-            task.taskStatus = form.taskStatus.data
-            db.session.commit()
-            flash('Your task has been updated', 'success')
-            return redirect(url_for('main.dashboard'))
+        task.taskTitle = form.taskTitle.data
+        task.taskDescription = form.taskDescription.data
+        task.taskDue = form.taskDue.data
+        task.taskStatus = form.taskStatus.data
+        db.session.commit()
+        flash('Your task has been updated', 'success')
+        return redirect(url_for('main.dashboard'))
 
     elif request.method == 'GET':
         form.taskTitle.data = task.taskTitle
