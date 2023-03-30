@@ -2,15 +2,16 @@
 {% block content %}
 
 	<div class="content-section">
-	  <div class="media col-md-4">
+	  <div class="media col-md-6">
 	    <img class="rounded-circle account-img" src="{{ userImage }}">
 	    <div class="media-body col-md-8">
-	      <h5 class="mt-0">Kia Ora {{ current_user.userFirstName }} {{ current_user.userLastName }}</h5>
+	      <h5 class="mt-4">Kia Ora {{ current_user.userFirstName }} {{ current_user.userLastName }}</h5>
 	      <p class="text-secondary">{{ current_user.userEmail }}</p>
 	    </div>
 	  </div>
-	  <!-- AccountUpdateForm here -->
-	  	<div class="content-section">
+	</div>
+	<!-- AccountUpdateForm here -->
+	<div class="content-section">
 	  	<!-- INCLUDING ENCODING TYPE OTHERWISE IMAGE DATA WON'T BE PASSED CORRECTLY! -->
 		<form method="POST" action="" enctype="multipart/form-data">
 			<!-- # Hidden tag method adds a CSRF token -->
@@ -62,5 +63,5 @@
 		</form>
 	</div>
 
-	</div>
+	
 {% endblock content %}

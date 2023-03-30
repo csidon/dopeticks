@@ -5,14 +5,15 @@
 		<p>Here's what you've got on at the moment</p> 
 	</div>
 	<section>
-
-			<div class="container">
+		<div class="container">
+			<!-- ToDo, Doing, Done summary cards -->
 		    <div class="row d-flex justify-content-center align-items-center">
+
 		        <div class="col-md-4 col-xl-3">
 					<div class="card bg-c-yellow order-card cardTag" onclick="myFunction()">
 						<div class="card-block">
 							<h6 class="m-b-20">To do</h6>
-							<h2 class="text-right"><i class="fa fa-cart-plus f-left"></i><span>12</span></h2>
+							<h2 class="text-right"><i class="fa fa-cart-plus f-left"></i><span>{{ todo }}</span></h2>
 						</div>
 					</div>
 		        </div>
@@ -21,18 +22,16 @@
 		            <div class="card bg-c-blue order-card cardTag">
 		                <div class="card-block">
 		                    <h6 class="m-b-20">In progress</h6>
-		                    <h2 class="text-right"><i class="fa fa-rocket f-left"></i><span>2</span></h2>
+		                    <h2 class="text-right"><i class="fa fa-rocket f-left"></i><span>{{ doing }}</span></h2>
 		                </div>
 		            </div>
 		        </div>
-
-
 
 		        <div class="col-md-4 col-xl-3">
 		            <div class="card bg-c-green order-card cardTag">
 		                <div class="card-block">
 		                    <h6 class="m-b-20">Done</h6>
-		                    <h2 class="text-right"><i class="fa fa-refresh f-left"></i><span>0</span></h2>
+		                    <h2 class="text-right"><i class="fa fa-refresh f-left"></i><span>{{ done }}</span></h2>
 		                </div>
 		            </div>
 		        </div>
@@ -46,26 +45,19 @@
 		            </div>
 		        </div>
 			</div>
-<<<<<<< HEAD
-<!--			<div class="widget-49">-->
-<!--				<a href={{ url_for('newTask') }} class="btn btn-sm btn-flash-border-primary">Add Task</a>-->
-<!--			</div>-->
+			<!-- End of summary cards -->
+
 			<div class="col-lg-4">
 				<div class="card card-margin text-center ">
 					<div class="card-header no-border">
 						<h5 class="card-title">Add new task</h5>
 					</div>
 					<div class="card-body pt-0" style="font-size:3em;">
-						<a href={{ url_for('newTask') }} class="btn btn-lg btn-flash-border-primary ">
-							&#10133
-						</a>
+						<a href={{ url_for('tasks.newTask') }} class="btn btn-lg btn-flash-border-primary ">&#10133</a>
 					</div>
 				</div>
-=======
-			<div class="widget-49">
-				<a href={{ url_for('tasks.newTask') }} class="btn btn-sm btn-flash-border-primary">Add Task</a>
->>>>>>> 80b0d9df9da34df0d0a35a38d3f20c9a52461e8d
 			</div>
+
 		</div>
 	</section>
 
@@ -86,19 +78,19 @@
 											<img class="rounded-circle article-img" src="{{ url_for('static', filename='profilePics/' + task.owner.userImage) }}">
 										</div>
 										<div class="widget-49-meeting-info">
-											<span class="widget-49-pro-title">{{ task.owner.userFirstName}}</span>
+											<span class="widget-49-pro-title">{{ task.owner.userFirstName }}</span>
 											<span class="widget-49-meeting-time">Due on {{ task.taskDue.strftime('%d-%m-%Y') }}</span>
+											<span class="widget-49-meeting-time">Task status {{ task.taskStatus }}</span>
+											<span class="widget-49-meeting-time">Task priority {{ task.taskPriority }}</span>
 										</div>
 									</div>
 									<ol class="widget-49-meeting-points">
 										<p> {{ task.taskDescription}}</p>
 									</ol>
 									<div class="widget-49-meeting-action">
-<<<<<<< HEAD
-										<a href= {{ url_for('task', taskID=task.id) }} class="btn btn-sm btn-flash-border-primary">Edit</a>
-=======
+
 										<a href={{ url_for('tasks.updateTask', taskID=task.id) }} class="btn btn-sm btn-flash-border-primary">Edit</a>
->>>>>>> 80b0d9df9da34df0d0a35a38d3f20c9a52461e8d
+
 									</div>
 								</div>
 							</div>

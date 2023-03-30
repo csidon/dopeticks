@@ -1,16 +1,11 @@
 {% extends "layout.html" %}
 {% block content %}
 
-
-<!-- Since the code for update and creating a task is very similar, I'm going to use this template and purpose it for both update/create tasks -->
-
 <div class="content-section">
-	<form  method="POST" action="">
-		<!-- # Hidden tag method adds a CSRF token -->
+	<form method="POST">
 		{{ form.hidden_tag() }}
 		<fieldset class="form-group">
 			<legend class="border-bottom text-center mb-5" style = "font-weight: bold; font-size: 32px; color: #5E5E5E;">{{ legend }}</legend>
-
 			<div class="form-outline mb-2">
 				{{ form.taskTitle.label(class="form-control-label") }}
 				{% if form.taskTitle.errors %}
@@ -50,34 +45,50 @@
 					{{ form.taskDue(class="form-control form-control-lg") }}
 				{% endif %}
 			</div>
-			<div class="dropdown">
-				<a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuButton" data-toggle="dropdown" aria-expanded="false">
-				    Set Task Status
-				</a>
-				<ul class="dropdown-menu">
-					{% if form.taskStatus.errors %}
-						{{ form.taskStatus(class="form-control form-control-lg is-invalid")}}
-						<div class="invalid-feedback">
-							{% for error in form.taskStatus.errors %}
-								<span> {{ error }} </span>
-							{% endfor %}
-						</div>
-					{% else %}
-						{% for choices in form.taskStatus.choices %}
-							<li><a class="dropdown-item" href="#"> {{ choices }} </a></li>
-						{% endfor %}
-
-					{% endif %}
-				</ul>
+		
+			<div class="form-outline mb-1">
+				<!-- {{ form.taskStatus }} -->
+				{% for choices in form.taskStatus %}
+				    <label class="radio">
+				        {{ choices }}
+				        {{ choices.label }}
+				    </label>
+			    {% endfor %}
 			</div>
 
-	    </fieldset>
-		<div class="text-center text-lg-start mt-4 pt-2">
-			{{ form.submit(class="btn btn-outline-secondary btn-lg btn-block") }}
-		</div>
+			<div class="form-outline mb-1">
+				{% for choices in form.taskPriority %}
+				    <label class="radio">
+				        {{ choices }}
+				        {{ choices.label }}
+				    </label>
+			    {% endfor %}
+			</div>
+			
+			<input type="submit">
+		</fieldset>
 	</form>
-</div>
 
+
+</div>
+	<script>
+
+		// const btn = document.getElementById('submit');     
+		// const radioButtons = document.querySelectorAll('input[name="taskStatus"]');
+        // btn.addEventListener("click", () => {
+        //     let selectedStatus;
+        //     for (const radioButton of radioButtons) {
+        //         if (radioButton.checked) {
+        //             selectedStatus = radioButton.value;
+        //             break;
+        //         }
+        //     }
+        //     // show the output:
+        //     // output.innerText = selectedStatus ? `You selected ${selectedStatus}` : `You haven't selected any status`;
+        // });
+
+
+	</script>
 
 
 {% endblock content %}
