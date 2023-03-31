@@ -1,9 +1,16 @@
-function myFunction() {
-  var x = document.getElementById("todo-section");
-  if (x.style.display === "none") {
-    x.style.display = "block";
+function revealFunction() {
+  var todo = document.getElementById("todo-section");
+  var progress = document.getElementById("progress-section");
+  var done = document.getElementById("done-section");
+  var overdue = document.getElementById("overdue-section");
+  if (todo.style.display === "none") {
+    todo.style.display = "block";
+    progress.style.display = "none";
+    done.style.display = "none";
+    overdue.style.display = "none";
   } else {
-    x.style.display = "none";
+    todo.style.display = "none";
   }
-  alert("js connection check");
+  alert("to do clicked");
 }
+

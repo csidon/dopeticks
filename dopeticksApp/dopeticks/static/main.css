@@ -434,7 +434,7 @@ body{
 .widget-49 .widget-49-meeting-action a {
   text-transform: uppercase;
 }
-
+/*DashBoard*/
 /*Tags*/
 .order-card {
     color: #fff;
@@ -483,3 +483,11 @@ body{
     float: right;
 }
 
+.row.display-flex {
+  display: flex;
+  flex-wrap: wrap;
+}
+.row.display-flex > [class*='col-'] {
+  display: flex;
+  flex-direction: column;
+}
