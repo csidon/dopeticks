@@ -23,8 +23,11 @@ def dashboard():
     todo = Task.query.filter(Task.userID==current_user.id,Task.taskStatus=="todo").count()
     doing = Task.query.filter(Task.userID==current_user.id,Task.taskStatus=="doing").count()
     done = Task.query.filter(Task.userID==current_user.id,Task.taskStatus=="done").count()
-    return render_template('dashboard.html', title='Your Dopeticks Stats At A Glance', tasks=tasks, todo=todo, doing=doing, done=done)
-
+    todoTasks = Task.query.filter(Task.userID == current_user.id, Task.taskStatus == "todo").order_by(Task.taskDue)
+    doingTasks = Task.query.filter(Task.userID == current_user.id, Task.taskStatus == "doing").order_by(Task.taskDue)
+    doneTasks = Task.query.filter(Task.userID == current_user.id, Task.taskStatus == "done").order_by(Task.taskDue)
+    return render_template('dashboard.html', title='Your Dopeticks Stats At A Glance', tasks=tasks, todo=todo, doing=doing, done=done,
+        todoTasks=todoTasks, doingTasks=doingTasks, doneTasks=doneTasks)
 
 
 @main.route("/test")
