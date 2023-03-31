@@ -26,11 +26,11 @@ class Task(db.Model):
     taskDescription = db.Column(db.Text, nullable=False)
     taskStatus = db.Column(db.String, nullable=True, default='todo')
     taskPriority = db.Column(db.String, nullable=True, default='normal')
-    taskDue = db.Column(db.DateTime, nullable=True, default=datetime.utcnow)
+    taskDue = db.Column(db.DateTime, nullable=True, default=datetime.now)
     userID = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
 
     def __repr__(self):
         # return f"Task('{self.taskTitle}', '{self.taskStatus}', '{self.taskPriority}', '{self.taskDue}')"
-        return f"Task('{self.taskTitle}', '{self.taskDescription}')"
+        return f"Task('{self.taskTitle}', '{self.taskDescription}', '{self.taskStatus}','{self.taskDue}','{self.taskPriority}')"
 
 

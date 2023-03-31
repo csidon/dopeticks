@@ -3,6 +3,7 @@
 	<div class="container">
 		<h2>Kia ora {{ current_user.userFirstName }}!</h2>
 		<p>Here's what you've got on at the moment</p> 
+
 	</div>
 	<section>
 		<div class="container">
@@ -40,7 +41,7 @@
 		            <div class="card bg-c-pink order-card cardTag">
 		                <div class="card-block">
 		                    <h6 class="m-b-20">Overdue</h6>
-		                    <h2 class="text-right"><i class="fa fa-credit-card f-left"></i><span>0</span></h2>
+		                    <h2 class="text-right"><i class="fa fa-credit-card f-left"></i><span>{{ overdue }}</span></h2>
 		                </div>
 		            </div>
 		        </div>

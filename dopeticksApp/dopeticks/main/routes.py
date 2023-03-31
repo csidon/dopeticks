@@ -3,6 +3,7 @@
 from flask import render_template, url_for, flash, Blueprint
 from dopeticks.models import Task
 from flask_login import current_user, login_required
+from datetime import datetime
 
 
 
@@ -18,7 +19,9 @@ def home():
 @main.route("/dashboard")
 @login_required             # Needed for routes that can only be accessed after login
 def dashboard():
-    # tasks = Task.query.all()
+    dateToday = datetime.today()
+    overdue = Task.query.filter(Task.userID == current_user.id, Task.taskDue < dateToday).count()
+    overdueTasks = Task.query.filter(Task.userID == current_user.id, Task.taskDue < dateToday).order_by(Task.taskDue)
     tasks = Task.query.filter(Task.userID==current_user.id)
     todo = Task.query.filter(Task.userID==current_user.id,Task.taskStatus=="todo").count()
     doing = Task.query.filter(Task.userID==current_user.id,Task.taskStatus=="doing").count()
@@ -27,7 +30,7 @@ def dashboard():
     doingTasks = Task.query.filter(Task.userID == current_user.id, Task.taskStatus == "doing").order_by(Task.taskDue)
     doneTasks = Task.query.filter(Task.userID == current_user.id, Task.taskStatus == "done").order_by(Task.taskDue)
     return render_template('dashboard.html', title='Your Dopeticks Stats At A Glance', tasks=tasks, todo=todo, doing=doing, done=done,
-        todoTasks=todoTasks, doingTasks=doingTasks, doneTasks=doneTasks)
+        todoTasks=todoTasks, doingTasks=doingTasks, doneTasks=doneTasks, overdue=overdue, overdueTasks=overdueTasks)
 
 
 @main.route("/test")
