@@ -11,7 +11,7 @@
 		    <div class="row d-flex justify-content-center align-items-center">
 
 		        <div class="col-md-4 col-xl-3">
-					<div class="card bg-c-yellow order-card cardTag" onclick="revealToDo()">
+					<div class="card bg-c-yellow order-card cardTag" id="todo-btn" onclick="revealFunction('todo-section', 'todo')">
 						<div class="card-block">
 							<h6 class="m-b-20">To do</h6>
 							<h2 class="text-right"><i class="fa fa-cart-plus f-left"></i><span>{{ todo }}</span></h2>
@@ -20,7 +20,7 @@
 		        </div>
 
 		        <div class="col-md-4 col-xl-3">
-		            <div class="card bg-c-blue order-card cardTag" onclick="revealInProgress()">
+		            <div class="card bg-c-blue order-card cardTag" id="doing-btn" onclick="revealFunction('progress-section', 'progress')">
 		                <div class="card-block">
 		                    <h6 class="m-b-20">In progress</h6>
 		                    <h2 class="text-right"><i class="fa fa-rocket f-left"></i><span>{{ doing }}</span></h2>
@@ -29,7 +29,7 @@
 		        </div>
 
 		        <div class="col-md-4 col-xl-3">
-		            <div class="card bg-c-green order-card cardTag">
+		            <div class="card bg-c-green order-card cardTag" id="done-btn" onclick="revealFunction('done-section', 'done')">
 		                <div class="card-block">
 		                    <h6 class="m-b-20">Done</h6>
 		                    <h2 class="text-right"><i class="fa fa-refresh f-left"></i><span>{{ done }}</span></h2>
@@ -38,7 +38,7 @@
 		        </div>
 
 		        <div class="col-md-4 col-xl-3">
-		            <div class="card bg-c-pink order-card cardTag">
+		            <div class="card bg-c-pink order-card cardTag" id="overdue-btn" onclick="revealFunction('overdue-section', 'overdue')">
 		                <div class="card-block">
 		                    <h6 class="m-b-20">Overdue</h6>
 		                    <h2 class="text-right"><i class="fa fa-credit-card f-left"></i><span>{{ overdue }}</span></h2>
