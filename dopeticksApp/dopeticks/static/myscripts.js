@@ -16,20 +16,23 @@ function revealFunction(id, btn) {
         done.style.display = 'none';
         overdue.style.display = 'none';
     }
-    if (btn == "done"){
+    else if (btn == "done"){
         progress.style.display = 'none';
         todo.style.display = 'none';
         overdue.style.display = 'none';
     }
-    if (btn == "progress"){
+    else if (btn == "progress"){
         todo.style.display = 'none';
         done.style.display = 'none';
         overdue.style.display = 'none';
     }
-    if (btn == "overdue"){
+    else if (btn == "overdue"){
         progress.style.display = 'none';
         done.style.display = 'none';
         todo.style.display = 'none';
+    }
+    else{
+    console.log("smth else is clicked")
     }
 
 }

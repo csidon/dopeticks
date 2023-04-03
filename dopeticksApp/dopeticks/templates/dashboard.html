@@ -47,15 +47,8 @@
 			</div>
 			<!-- End of summary cards -->
 
-			<div class="col-lg-4">
-				<div class="card card-margin text-center ">
-					<div class="card-header no-border">
-						<h5 class="card-title">Add new task</h5>
-					</div>
-					<div class="card-body pt-0" style="font-size:3em;">
-						<a href={{ url_for('tasks.newTask') }} class="btn btn-lg btn-flash-border-primary ">&#10133</a>
-					</div>
-				</div>
+			<div class="row" style="font-size:3em; margin-left:0;">
+				<button type="button" class="btn btn-outline-info"><a href={{ url_for('tasks.newTask') }} class="btn btn-lg btn-flash-border-primary ">&#10133</a></button>
 			</div>
 
 		</div>
@@ -89,7 +82,8 @@
 									</ol>
 									<div class="widget-49-meeting-action">
 
-										<a href={{ url_for('tasks.updateTask', taskID=task.id) }} class="btn btn-sm btn-flash-border-primary">Edit</a>
+										<a href={{ url_for('tasks.updateTask', taskID=task.id) }} class="btn btn-sm btn-flash-border-primary btn-outline-info">Edit</a>
+										<a href="" class="btn btn-sm btn-flash-border-danger btn-outline-danger">Delete</a>
 
 									</div>
 								</div>
@@ -100,6 +94,7 @@
 			</div>
 		</div>
 	</section>
+
 <!--In progress section-->
 	<section id="progress-section">
 		<div class="container" >
@@ -140,6 +135,86 @@
 		</div>
 	</section>
 
+<!--done section-->
+	<section id="done-section">
+		<div class="container" >
+			<div class="row display-flex">
+				{% for task in context.doneTasks %}
+					<div class="col-lg-4" style="margin-top: 2%;">
+						<div class="card card-margin">
+							<div class="card-header no-border">
+								<h5 class="card-title">{{ task.taskTitle }}</h5>
+							</div>
+							<div class="card-body pt-0">
+								<div class="widget-49">
+									<div class="widget-49-title-wrapper">
+										<div class="widget-49-date-primary">
+											<img class="rounded-circle article-img" src="{{ url_for('static', filename='profilePics/' + task.owner.userImage) }}">
+										</div>
+										<div class="widget-49-meeting-info">
+											<span class="widget-49-pro-title">{{ task.owner.userFirstName }}</span>
+											<span class="widget-49-meeting-time">Due on {{ task.taskDue.strftime('%d-%m-%Y') }}</span>
+											<span class="widget-49-meeting-time">Task status {{ task.taskStatus }}</span>
+											<span class="widget-49-meeting-time">Task priority {{ task.taskPriority }}</span>
+										</div>
+									</div>
+									<ol class="widget-49-meeting-points">
+										<p> {{ task.taskDescription}}</p>
+									</ol>
+									<div class="widget-49-meeting-action">
+
+										<a href={{ url_for('tasks.updateTask', taskID=task.id) }} class="btn btn-sm btn-flash-border-primary">Edit</a>
+
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				{% endfor %}
+			</div>
+		</div>
+	</section>
+
+<!--overdue section-->
+	<section id="overdue-section">
+		<div class="container" >
+			<div class="row display-flex">
+				<!--ask Chris-->
+				{% for task in context.overdueTasks %}
+					<div class="col-lg-4" style="margin-top: 2%;">
+						<div class="card card-margin">
+							<div class="card-header no-border">
+								<h5 class="card-title">{{ task.taskTitle }}</h5>
+							</div>
+							<div class="card-body pt-0">
+								<div class="widget-49">
+									<div class="widget-49-title-wrapper">
+										<div class="widget-49-date-primary">
+											<img class="rounded-circle article-img" src="{{ url_for('static', filename='profilePics/' + task.owner.userImage) }}">
+										</div>
+										<div class="widget-49-meeting-info">
+											<span class="widget-49-pro-title">{{ task.owner.userFirstName }}</span>
+											<span class="widget-49-meeting-time">Due on {{ task.taskDue.strftime('%d-%m-%Y') }}</span>
+											<span class="widget-49-meeting-time">Task status {{ task.taskStatus }}</span>
+											<span class="widget-49-meeting-time">Task priority {{ task.taskPriority }}</span>
+										</div>
+									</div>
+									<ol class="widget-49-meeting-points">
+										<p> {{ task.taskDescription}}</p>
+									</ol>
+									<div class="widget-49-meeting-action">
+
+										<a href={{ url_for('tasks.updateTask', taskID=task.id) }} class="btn btn-sm btn-flash-border-primary">Edit</a>
+
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				{% endfor %}
+			</div>
+		</div>
+	</section>
 
 {% endblock content %}
 
