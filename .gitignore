@@ -1,9 +1,4 @@
-<<<<<<< HEAD
 */__pycache__/*
 dopeticksApp/venv/
 dopeticksApp/dopeticks/__pycache__/*
-=======
-*/__pycache__/*
-dopeticksApp/venv/
-dopeticksApp/dopeticks/__pycache__/*
->>>>>>> main
+
