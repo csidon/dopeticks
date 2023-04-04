@@ -17,8 +17,8 @@ class TaskForm(FlaskForm):
 	taskStatus = RadioField(u'Task Status', validators=[DataRequired()], choices=[ ("todo", u"To do"), ("doing", u"Doing"), ("done", u"Done") ], default="")
 	taskPriority = RadioField(u'Task Priority', validators=[DataRequired()], choices=[ ("normal", u"Normal"), ("high", u"High"), ("urgent", u"Urgent") ], default="normal")
 
-
-	submit = SubmitField('Create New Task')
+	delete = SubmitField(label="Delete", render_kw={'formnovalidate': True})
+	submit = SubmitField(label='Create New Task')
 
 
 

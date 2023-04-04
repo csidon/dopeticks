@@ -57,3 +57,17 @@ def updateTask(taskID):
         form.taskStatus.data = task.taskStatus
 
     return render_template('createTask.html', title='Update Task', form=form, task=task, legend="Update Task")
+
+
+@tasks.route("/task/<int:taskID>/delete", methods=['POST'])
+@login_required 
+def deleteTask(taskID):
+    task = Task.query.get_or_404(taskID)
+    # if task.owner != current_user:
+    #     abort(403)
+    task.taskStatus = "archived"
+    db.session.commit()
+    flash("We've archived your task. You can still view it in your Recycle Bin for the next 90 days!", 'success')
+    return redirect(url_for('main.dashboard'))
+
+    # return render_template('createTask.html', title='Update Task', form=form, task=task, legend="Update Task")
