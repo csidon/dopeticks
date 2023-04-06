@@ -23,6 +23,9 @@ Make sure that the following are NOT in the requirements.txt file!!
 pypiwin32==223
 pywin32==305
 
+Make sure that main application is renamed to application.py and the flask app is also application and not another name. Refactor using Pycharm!!
+Make sure that .idea and __pycache__ files are deleted before upload
+
 
 
 ####################################
