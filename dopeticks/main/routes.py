@@ -21,8 +21,8 @@ def home():
 def dashboard():
     context = dict()
     dateToday = datetime.today()
-    context['overdue'] = Task.query.filter(Task.userID == current_user.id, Task.taskDue < dateToday).count()
-    context['overdueTasks'] = Task.query.filter(Task.userID == current_user.id, Task.taskDue < dateToday).order_by(Task.taskDue)
+    context['overdue'] = Task.query.filter(Task.userID == current_user.id, Task.taskDue < dateToday, Task.taskStatus != "archived").count()
+    context['overdueTasks'] = Task.query.filter(Task.userID == current_user.id, Task.taskDue < dateToday, Task.taskStatus != "archived").order_by(Task.taskDue)
     context['tasks'] = Task.query.filter(Task.userID==current_user.id)
     context['todo'] = Task.query.filter(Task.userID==current_user.id,Task.taskStatus=="todo").count()
     context['doing'] = Task.query.filter(Task.userID==current_user.id,Task.taskStatus=="doing").count()
@@ -30,6 +30,7 @@ def dashboard():
     context['todoTasks'] = Task.query.filter(Task.userID == current_user.id, Task.taskStatus == "todo").order_by(Task.taskDue)
     context['doingTasks'] = Task.query.filter(Task.userID == current_user.id, Task.taskStatus == "doing").order_by(Task.taskDue)
     context['doneTasks'] = Task.query.filter(Task.userID == current_user.id, Task.taskStatus == "done").order_by(Task.taskDue)
+    context['archivedTasks'] = Task.query.filter(Task.userID == current_user.id, Task.taskStatus == "archived").order_by(Task.taskDue)
     return render_template('dashboard.html', title='Your Dopeticks Stats At A Glance', context=context)
 
 @main.route("/test")
