@@ -1,6 +1,7 @@
 */__pycache__/*
-dopeticksApp/venv/
-dopeticksApp/dopeticks/__pycache__/*
+venv
+dopeticks/__pycache__/*
+.idea
 # Elastic Beanstalk Files
 .elasticbeanstalk/*
 !.elasticbeanstalk/*.cfg.yml
