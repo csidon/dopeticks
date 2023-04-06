@@ -3,7 +3,7 @@ import os
 import secrets              # Package that generates a random hex value
 from PIL import Image       # Pillow package that helps to resize image
 from flask import render_template, url_for  # Not needed here but commonly used, clean up if not used on submission!
-from dopeticks import app
+from dopeticks import application
 
 
 
@@ -16,7 +16,7 @@ def saveImage(formUploadedImage):
     _, fileExtension = os.path.splitext(formUploadedImage.filename)
     randomHexImage = randomHexImage + fileExtension
     # Concats the os path to the image
-    imagePath = os.path.join(app.root_path, 'static/profilePics', randomHexImage)
+    imagePath = os.path.join(application.root_path, 'static/profilePics', randomHexImage)
     # Resizing image so that it's no more than 125px -- This allows us to save space and run more efficiently
     outputSize = (125, 125)
     imageThumb = Image.open(formUploadedImage)

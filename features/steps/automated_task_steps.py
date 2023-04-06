@@ -12,7 +12,7 @@ def step_impl(context):
 
 @given("the user is logged in")
 def step_impl(context):
-    with context.app.test_client() as client:
+    with context.application.test_client() as client:
         client.post('/login', data=dict(email='testuser1@example.com', password='testpassword'), follow_redirects=True)
 
 @when("the user navigates to the homepage")
@@ -27,7 +27,7 @@ def step_impl(context, page):
 
 @when('the user creates a new task with the title "{title}", description "{description}", priority "{priority}", and due date "{due_date}"')
 def step_impl(context, title, description, priority, due_date):
-    with context.app.test_client() as client:
+    with context.application.test_client() as client:
         due_date = datetime.strptime(due_date, "%m/%d/%Y %I:%M %p")
         response = client.post('/tasks/create', data=dict(
             title=title, description=description, priority=priority, due_date=due_date
