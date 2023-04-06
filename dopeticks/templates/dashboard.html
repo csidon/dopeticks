@@ -13,7 +13,7 @@
 					<div class="card bg-c-yellow order-card cardTag" id="todo-btn" onclick="revealFunction('todo-section', 'todo')">
 						<div class="card-block">
 							<h6 class="m-b-20">To do</h6>
-							<h2 class="text-right"><i class="fa fa-cart-plus f-left"></i><span>{{ context.todo }}</span></h2>
+							<h2 class="text-right"><span>{{ context.todo }}</span></h2>
 						</div>
 					</div>
 		        </div>
@@ -22,7 +22,7 @@
 		            <div class="card bg-c-blue order-card cardTag" id="doing-btn" onclick="revealFunction('progress-section', 'progress')">
 		                <div class="card-block">
 		                    <h6 class="m-b-20">In progress</h6>
-		                    <h2 class="text-right"><i class="fa fa-rocket f-left"></i><span>{{ context.doing }}</span></h2>
+		                    <h2 class="text-right"><span>{{ context.doing }}</span></h2>
 		                </div>
 		            </div>
 		        </div>
@@ -31,7 +31,7 @@
 		            <div class="card bg-c-green order-card cardTag" id="done-btn" onclick="revealFunction('done-section', 'done')">
 		                <div class="card-block">
 		                    <h6 class="m-b-20">Done</h6>
-		                    <h2 class="text-right"><i class="fa fa-refresh f-left"></i><span>{{ context.done }}</span></h2>
+		                    <h2 class="text-right"><span>{{ context.done }}</span></h2>
 		                </div>
 		            </div>
 		        </div>
@@ -40,7 +40,7 @@
 		            <div class="card bg-c-pink order-card cardTag" id="overdue-btn" onclick="revealFunction('overdue-section', 'overdue')">
 		                <div class="card-block">
 		                    <h6 class="m-b-20">Overdue</h6>
-		                    <h2 class="text-right"><i class="fa fa-credit-card f-left"></i><span>{{ context.overdue }}</span></h2>
+		                    <h2 class="text-right"><span>{{ context.overdue }}</span></h2>
 		                </div>
 		            </div>
 		        </div>
@@ -48,7 +48,8 @@
 			<!-- End of summary cards -->
 
 			<div class="row" style="font-size:3em; margin-left:0;">
-				<button type="button" class="btn btn-outline-info"><a href={{ url_for('tasks.newTask') }} class="btn btn-lg btn-flash-border-primary ">&#10133</a></button>
+				<button type="button" class="btn btn-outline-info"><a href={{ url_for('tasks.newTask') }}><img style="width:40px;height:auto" src={{ url_for('static', filename='images/add.png') }} alt="archive"</a></button>
+				<button type="button" class="btn btn-outline-info ml-4"><a href=""><img style="width:40px;height:auto" src={{ url_for('static', filename='images/archive.png') }} alt="archive"></a></button>
 			</div>
 
 		</div>
@@ -147,8 +148,8 @@
 									</ol>
 									<div class="widget-49-meeting-action">
 
-										<a href={{ url_for('tasks.updateTask', taskID=task.id) }} class="btn btn-sm btn-flash-border-primary">Edit</a>
-
+										<a href={{ url_for('tasks.updateTask', taskID=task.id) }} class="btn btn-sm btn-flash-border-primary btn-outline-info">Edit</a>
+										<a href="" class="btn btn-sm btn-flash-border-danger btn-outline-danger">Delete</a>
 									</div>
 								</div>
 							</div>
@@ -187,8 +188,8 @@
 									</ol>
 									<div class="widget-49-meeting-action">
 
-										<a href={{ url_for('tasks.updateTask', taskID=task.id) }} class="btn btn-sm btn-flash-border-primary">Edit</a>
-
+										<a href={{ url_for('tasks.updateTask', taskID=task.id) }} class="btn btn-sm btn-flash-border-primary btn-outline-info">Edit</a>
+										<a href="" class="btn btn-sm btn-flash-border-danger btn-outline-danger">Delete</a>
 									</div>
 								</div>
 							</div>
@@ -228,8 +229,8 @@
 									</ol>
 									<div class="widget-49-meeting-action">
 
-										<a href={{ url_for('tasks.updateTask', taskID=task.id) }} class="btn btn-sm btn-flash-border-primary">Edit</a>
-
+										<a href={{ url_for('tasks.updateTask', taskID=task.id) }} class="btn btn-sm btn-flash-border-primary btn-outline-info">Edit</a>
+										<a href="" class="btn btn-sm btn-flash-border-danger btn-outline-danger">Delete</a>
 									</div>
 								</div>
 							</div>
