@@ -1,0 +1,60 @@
+<html>
+  <body>
+    <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+      <div class="mermaid">
+    
+        classDiagram
+          class LoginForm {
+            submit : SubmitField
+            userEmail : StringField
+            userPassword : PasswordField
+            userRemember : BooleanField
+          }
+          class RegistrationForm {
+            confirmPassword : PasswordField
+            submit : SubmitField
+            userEmail : StringField
+            userFirstName : StringField
+            userLastName : StringField
+            userPassword : PasswordField
+            validate_userEmail(userEmail)
+          }
+          class Task {
+            id
+            taskDescription
+            taskDue
+            taskPriority
+            taskStatus
+            taskTitle
+            userID
+          }
+          class TaskForm {
+            delete : SubmitField
+            submit : SubmitField
+            taskDescription : TextAreaField
+            taskDue : DateField
+            taskPriority : RadioField
+            taskStatus : RadioField
+            taskTitle : StringField
+          }
+          class UpdateAccountForm {
+            submit : SubmitField
+            uploadImage : FileField
+            userEmail : StringField
+            userFirstName : StringField
+            userLastName : StringField
+            validate_userEmail(userEmail)
+          }
+          class User {
+            id
+            tasks
+            userEmail
+            userFirstName
+            userImage
+            userLastName
+            userPassword
+          }
+  
+       </div>
+  </body>
+</html>

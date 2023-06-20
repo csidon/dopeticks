@@ -1,7 +1,5 @@
 /*Example CSS here - @Ana feel free to change this!*/
 
-
-
 body.page-background {
   background-image: url('static/images/register_back.png');
   background-repeat: no-repeat;
@@ -281,6 +279,7 @@ body{
 }
 
 .row.display-flex {
+  margin-top: 5%;
   display: flex;
   flex-wrap: wrap;
 }
