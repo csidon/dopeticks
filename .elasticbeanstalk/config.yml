@@ -1,13 +1,11 @@
 branch-defaults:
-  main:
-    environment: dopeticks-dev
-environment-defaults:
-  dopeticks-dev:
-    branch: null
-    repository: null
+  chris:
+    environment: null
+    group_suffix: null
 global:
   application_name: dopeticks
-  default_ec2_keyname: aws-eb-dope-keypair
+  branch: null
+  default_ec2_keyname: aws-eb-dopeticks-key
   default_platform: Python 3.11 running on 64bit Amazon Linux 2023
   default_region: us-west-2
   include_git_submodules: true
@@ -15,5 +13,6 @@ global:
   platform_name: null
   platform_version: null
   profile: eb-cli
+  repository: null
   sc: git
   workspace_type: Application
