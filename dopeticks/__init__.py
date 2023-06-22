@@ -10,13 +10,13 @@ application = Flask(__name__)
 # Set a secret key to prevent against modifying cookies and XSS requests on forms
 application.config['SECRET_KEY'] = '16de15a4bf6314e0badd358db742206261ccee1b5222fb8e'
 # format for the URI is postgresql://{user}:{password}@{RDS endpoint}/{db name, default is postgres}
-application.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgresmaster:1NewPass!@dopeticks-db-v02.chcal2ivuvcc.us-west-2.rds.amazonaws.com:5432/postgres'
+application.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgresmaster:1NewPass!@dopeticks-db-v04.chcal2ivuvcc.us-west-2.rds.amazonaws.com:5432/postgres'
 application.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(application)
 application.app_context().push()
 bcrypt = Bcrypt(application)
 loginManager = LoginManager(application)
-loginManager.login_view = 'login'			# Flask function that brings user back to login page if they haven't logged in
+loginManager.login_view = 'users.login'			# Flask function that brings user back to login page if they haven't logged in
 loginManager.login_message_category = 'info'		# Makes pretty - Assigns Bootstraps' "info" category styling to login-related messages
 
 from dopeticks.users.routes import users
