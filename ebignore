@@ -1,7 +1,0 @@
-venv 
-*/__pycache__/*
-dopeticks/__pycache__/*
-.idea
-dopeticks/main/__pycache__/*
-dopeticks/tasks/__pycache__/*
-dopeticks/users/__pycache__/*
