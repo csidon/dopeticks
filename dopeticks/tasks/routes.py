@@ -30,7 +30,8 @@ def newTask():
         db.session.commit()
         flash('New Task Created!', 'success')
         return redirect(url_for('main.dashboard'))
-    return render_template('createTask.html', title='New Task', form=form, legend="New Task")
+    buttonName = "Create"
+    return render_template('createTask.html', title='New Task', form=form, legend="New Task", buttonName=buttonName)
 
 
 
@@ -46,6 +47,7 @@ def updateTask(taskID):
         task.taskDescription = form.taskDescription.data
         task.taskDue = form.taskDue.data
         task.taskStatus = form.taskStatus.data
+        task.taskPriority=form.taskPriority.data
         db.session.commit()
         flash('Your task has been updated', 'success')
         return redirect(url_for('main.dashboard'))
@@ -55,8 +57,10 @@ def updateTask(taskID):
         form.taskDescription.data = task.taskDescription
         form.taskDue.data = task.taskDue
         form.taskStatus.data = task.taskStatus
+        form.taskPriority.data = task.taskPriority
 
-    return render_template('createTask.html', title='Update Task', form=form, task=task, legend="Update Task")
+    buttonName = "Update"
+    return render_template('createTask.html', title='Update Task', form=form, task=task, legend="Update Task", buttonName=buttonName)
 
 
 @tasks.route("/task/<int:taskID>/delete", methods=['POST'])

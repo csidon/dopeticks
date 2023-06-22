@@ -10,7 +10,7 @@
 		    <div class="row d-flex justify-content-center align-items-center">
 
 		        <div class="col-md-4 col-xl-3">
-					<div class="card bg-c-yellow order-card cardTag" id="cardtodo">
+					<div class="card bg-c-yellow order-card cardTag" id="todo-btn" onclick="revealFunction('todo-section', 'todo')">
 						<div class="card-block">
 							<h6 class="m-b-20">To do</h6>
 							<h2 class="text-right"><span>{{ context.todo }}</span></h2>
@@ -19,7 +19,7 @@
 		        </div>
 
 		        <div class="col-md-4 col-xl-3">
-		            <div class="card bg-c-blue order-card cardTag" id="carddoing">
+		            <div class="card bg-c-blue order-card cardTag" id="doing-btn" onclick="revealFunction('progress-section', 'progress')">
 		                <div class="card-block">
 		                    <h6 class="m-b-20">In progress</h6>
 		                    <h2 class="text-right"><span>{{ context.doing }}</span></h2>
@@ -28,7 +28,7 @@
 		        </div>
 
 		        <div class="col-md-4 col-xl-3">
-		            <div class="card bg-c-green order-card cardTag" id="carddone">
+		            <div class="card bg-c-green order-card cardTag" id="done-btn" onclick="revealFunction('done-section', 'done')">
 		                <div class="card-block">
 		                    <h6 class="m-b-20">Done</h6>
 		                    <h2 class="text-right"><span>{{ context.done }}</span></h2>
@@ -37,7 +37,7 @@
 		        </div>
 
 		        <div class="col-md-4 col-xl-3">
-		            <div class="card bg-c-pink order-card cardTag" id="cardoverdue">
+		            <div class="card bg-c-pink order-card cardTag" id="overdue-btn" onclick="revealFunction('overdue-section', 'overdue')">
 		                <div class="card-block">
 		                    <h6 class="m-b-20">Overdue</h6>
 		                    <h2 class="text-right"><span>{{ context.overdue }}</span></h2>
@@ -49,12 +49,12 @@
 			<!-- archived page -->
 
 			<!-- Buttons for creating a New Task and to View Archived tasks  -->
-			<div class="row" style="font-size:3em; margin-left:0; margin-bottom:5%;">
+			<div class="row" style="font-size:3em; margin-left:0;">
 				<button type="button" class="btn btn-outline-info"><a href={{ url_for('tasks.newTask') }}><img style="width:40px;height:auto" src={{ url_for('static', filename='images/add.png') }} alt="add-task"</a></button>
 				<!-- <button type="button" class="btn btn-outline-info ml-4"><a href=""><img style="width:40px;height:auto" src={{ url_for('static', filename='images/archive.png') }} alt="archive"></a></button> -->
 
 				<a class="btn btn-outline-info ml-4">
-	                <button type="button" id="archived-btn">
+	                <button type="button" id="archived-btn" onclick="revealFunction('archived-section', 'archived')">
 	                    <img style="width:40px;height:auto" src={{ url_for('static', filename='images/archive.png') }} alt="archive">
 	                </button>
 	            </a>
@@ -67,13 +67,11 @@
 
 	<!-- Default section in dashboard -->
 	<section id="default-section">
-		<div class="container"><h3> All tasks </h3></div>
 		<div class="container" >
 			<div class="row display-flex">
-				
 				<!-- Get the list of tasks in context.defaultTasks and display each item in the list-->
 				{% for task in context.defaultTasks %}
-					<div class="col-lg-4">
+					<div class="col-lg-4" style="margin-top: 0%;">
 						<div class="card card-margin">
 							<div class="card-header no-border">
 								<h5 class="card-title">{{ task.taskTitle }}</h5>
@@ -140,12 +138,11 @@
 	<!-- To do section in dashboard -->
 	
 	<section id="todo-section">
-		<div class="container"><h3> Tasks to do </h3></div>
 		<div class="container" >
 			<div class="row display-flex">
 				<!-- Get the list of tasks in context.todoTasks and display each item in the list-->
 				{% for task in context.todoTasks %}
-					<div class="col-lg-4">
+					<div class="col-lg-4" style="margin-top: 0%;">
 						<div class="card card-margin">
 							<div class="card-header no-border">
 								<h5 class="card-title">{{ task.taskTitle }}</h5>
@@ -209,11 +206,10 @@
 
 <!--In progress section-->
 	<section id="progress-section">
-		<div class="container"><h3> Tasks in progress </h3></div>
 		<div class="container" >
 			<div class="row display-flex">
 				{% for task in context.doingTasks %}
-					<div class="col-lg-4">
+					<div class="col-lg-4" style="margin-top: 0%;">
 						<div class="card card-margin">
 							<div class="card-header no-border">
 								<h5 class="card-title">{{ task.taskTitle }}</h5>
@@ -275,11 +271,10 @@
 
 <!--done section-->
 	<section id="done-section">
-		<div class="container"><h3> Completed tasks </h3></div>
 		<div class="container" >
 			<div class="row display-flex">
 				{% for task in context.doneTasks %}
-					<div class="col-lg-4">
+					<div class="col-lg-4" style="margin-top: 0%;">
 						<div class="card card-margin">
 							<div class="card-header no-border">
 								<h5 class="card-title">{{ task.taskTitle }}</h5>
@@ -341,12 +336,11 @@
 
 <!--overdue section-->
 	<section id="overdue-section">
-		<div class="container"><h3> Overdue tasks </h3></div>
 		<div class="container" >
 			<div class="row display-flex">
 				<!--ask Chris-->
 				{% for task in context.overdueTasks %}
-					<div class="col-lg-4">
+					<div class="col-lg-4" style="margin-top: 0%;">
 						<div class="card card-margin">
 							<div class="card-header no-border">
 								<h5 class="card-title">{{ task.taskTitle }}</h5>
@@ -407,12 +401,11 @@
 	</section>
 	<!--archived section-->
 	<section id="archived-section">
-		<div class="container"><h3> Archived tasks </h3></div>
 		<div class="container" >
 			<div class="row display-flex">
 				<!--ask Chris-->
 				{% for task in context.archivedTasks %}
-					<div class="col-lg-4">
+					<div class="col-lg-4" style="margin-top: 0%;">
 						<div class="card card-margin">
 							<div class="card-header no-border">
 								<h5 class="card-title">{{ task.taskTitle }}</h5>
