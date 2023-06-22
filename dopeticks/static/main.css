@@ -298,10 +298,6 @@ body{
     transform: scale(1.2);
 }
 
-.cardTag.card-bigger {
-    transform: scale(1.2);
-}
-
 .btn-outline-info.active {
   background-color: #17a2b8;
 }
