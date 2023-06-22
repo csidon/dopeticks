@@ -301,3 +301,7 @@ body{
 .btn-outline-info.active {
   background-color: #17a2b8;
 }
+
+.cardTag.card-bigger {
+    transform: scale(1.2);
+}

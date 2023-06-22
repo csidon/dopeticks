@@ -11,7 +11,7 @@ application = Flask(__name__)
 application.config['SECRET_KEY'] = '16de15a4bf6314e0badd358db742206261ccee1b5222fb8e'
 # format for the URI is postgresql://{user}:{password}@{RDS endpoint}/{db name, default is postgres}
 #application.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgresmaster:Jele2789!@dopeticks-db-v04.c5utz0tlt1mg.us-west-2.rds.amazonaws.com:5432/postgres'
-# application.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgresmaster:Jele2789!@dopeticks-db-v04.c5utz0tlt1mg.us-west-2.rds.amazonaws.com:5432/postgres'
+application.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgresmaster:1NewPass!@dopeticks-db-v04.chcal2ivuvcc.us-west-2.rds.amazonaws.com:5432/postgres'
 application.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(application)
 application.app_context().push()
