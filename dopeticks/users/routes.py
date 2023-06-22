@@ -46,6 +46,7 @@ def login():
             return redirect(nextPage) if nextPage else redirect(url_for('main.dashboard'))
         else:
             flash('Login unsuccessful. Please check email and password', 'danger')
+            return render_template('login.html', title='Log into your Dopeticks Account!', form=form)
     # errors = [{'field': key, 'messages': form.errors[key]} for key in form.errors.keys()] if form.errors else []        
     return render_template('login.html', title='Log into your Dopeticks Account!', form=form)
 
