@@ -294,8 +294,8 @@ body{
   flex-direction: column;
 }
 
-.cardTag.card-bigger {
-    transform: scale(1.2);
+.cardTag {
+    transition: transform 0.3s;
 }
 
 .btn-outline-info.active {

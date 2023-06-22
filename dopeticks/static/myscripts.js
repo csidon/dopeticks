@@ -1,3 +1,4 @@
+
 $(document).ready(function() {
     $('#todo-section, #progress-section, #done-section, #overdue-section, #archived-section').hide();
 
