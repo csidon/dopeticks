@@ -2,10 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="104173cc-a916-4a17-aab8-0ae6e4189b01" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/dopeticks/templates/dashboard_backup.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dopeticks/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/dopeticks/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dopeticks/main/routes.py" beforeDir="false" afterPath="$PROJECT_DIR$/dopeticks/main/routes.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/dopeticks/static/main.css" beforeDir="false" afterPath="$PROJECT_DIR$/dopeticks/static/main.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/dopeticks/static/myscripts.js" beforeDir="false" afterPath="$PROJECT_DIR$/dopeticks/static/myscripts.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dopeticks/tasks/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/dopeticks/tasks/forms.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dopeticks/tasks/routes.py" beforeDir="false" afterPath="$PROJECT_DIR$/dopeticks/tasks/routes.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dopeticks/templates/createTask.html" beforeDir="false" afterPath="$PROJECT_DIR$/dopeticks/templates/createTask.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dopeticks/templates/dashboard.html" beforeDir="false" afterPath="$PROJECT_DIR$/dopeticks/templates/dashboard.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

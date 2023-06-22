@@ -125,7 +125,9 @@ body{
     margin-top: 5rem;
 }
 
-
+.highlight {
+  background-color: orange;
+}
 
 
 .card-margin {
@@ -268,6 +270,8 @@ body{
     padding: 25px;
 }
 
+
+
 .order-card i {
     font-size: 26px;
 }
@@ -281,7 +285,7 @@ body{
 }
 
 .row.display-flex {
-  margin-top: 5%;
+  margin-top: 0%;
   display: flex;
   flex-wrap: wrap;
 }
@@ -290,10 +294,14 @@ body{
   flex-direction: column;
 }
 
-    .cardTag {
-        transition: transform 0.3s;
-    }
+.cardTag {
+    transition: transform 0.3s;
+}
 
-    .cardTag.card-bigger {
-        transform: scale(1.2);
-    }
+.cardTag.card-bigger {
+    transform: scale(1.2);
+}
+
+.btn-outline-info.active {
+  background-color: #17a2b8;
+}
