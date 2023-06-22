@@ -289,3 +289,11 @@ body{
   display: flex;
   flex-direction: column;
 }
+
+    .cardTag {
+        transition: transform 0.3s;
+    }
+
+    .cardTag.card-bigger {
+        transform: scale(1.2);
+    }
